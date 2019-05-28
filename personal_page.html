@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+
+<style>
+body {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+a {text-decoration : none; color : #003399;}
+a:hover {text-decoration:underline; color: #8C1515; }
+</style>
+
+<style>
+.disabled{
+    pointer-events: none;
+    color:black;
+}
+</style>
+
+<script>
+function copy(dest, source) {
+  if(dest.source == source) {
+    dest.innerHTML = "";
+    dest.source = null;
+  }
+  else {
+    dest.innerHTML = source.innerHTML;
+    dest.source = source;
+  }
+  dest.blur();
+}
+</script>
+
+<head>
+    <title>Hongguang Zhang's Homepage</title>
+    <link rel="icon" href="images/nlp_logo.jpg" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="author" content="Hongguang Zhang">
+    <meta name="keywords" content="Hongguang Zhang, ANU">
+    <meta name="robots" content="index,follow">
+    <meta name="description" content="Homepage of Hongguang Zhang, a Ph.D student in the College of Engineering and Computer Science at the Australian National University.">
+</head>
+
+<body>
+
+<table cellpadding="10" style="font-size: 18px">
+<tr>
+<td>
+<h1> Hongguang Zhang <span style="font-family:STFangsong; font-size:16pt"> (张洪广)</span> </h1>
+<b>Email</b>: <tt>firstname.lastname@anu.edu.au</tt> <br>
+<!-- <b>Office</b>: Gates 234</font> <br> -->
+<br>
+<a href = "#publications">[Publications]</a> <a href = "#education">[Education]</a> <a href="#honors">[Awards]</a> <a href="#activities">[Activities]</a> <br>
+</td>
+</tr>
+</table>
+
+<p style="width: 800px;">
+I am a PhD candidate in the College of Engineering and Computer Science (CSCE) at the Australian National University.
+<br><br>
+I obtained the M.Eng from National University of Defense Technology (NUDT). Before that, I graduated from Shanghai Jiao Tong University for B.Eng in Electrical Engineering and Automation.
+<br>
+
+<br>
+My main research topics are computer vision and machine learning. Specifically, I am currently doing research works on zero-shot learning, few-shot learning, domain adaptation with deep learning approaches. I am also interested in some low-level vision tasks, e. g. single image deblurring. <br><br>
+
+
+</p>
+
+<a name = "publications" class="disabled"><h2> Publications
+<font size="3">[<a href="https://scholar.google.com/citations?user=IUYz14IAAAAJ&hl=en">Google Scholar</a>]</font></h2></a>
+(<sup>*</sup>: equal contribution)
+<ul style="width: 850px;">
+  <li> <b>Multi-stage Second-order Few-shot Similarity Learning in Image Classification and Action Recognition
+</b></a><br><b>Hongguang Zhang</b>, Hongdong Li, Piotr Koniusz. <br> arxiv preprint, 2019 </li>
+  <div id="bib9" style="display:none">
+  <blockquote style="font-size:9pt">
+  <pre>
+    @inproceedings{zhang2019deep,
+      title={Deep Stacked Hierarchical Multi-patch Network for Image Deblurring},
+      author={Zhang, Hongguang},
+      booktitle={Computer Vision and Pattern Recognition (CVPR)},
+      year={2018}
+    }
+  </pre>
+  </blockquote>
+  </div>
+  <div id="div9"></div> <br> 
+  
+  <li> <b>A Deeper Look at Power Normalizations in Classical and Few-shot Fine-grained Setting
+</b></a><br>Piotr Koniusz*, <b>Hongguang Zhang*</b>. <br> arxiv preprint, 2019 </li>
+  <div id="bib8" style="display:none">
+  <blockquote style="font-size:9pt">
+  <pre>
+    @inproceedings{zhang2019deep,
+      title={Deep Stacked Hierarchical Multi-patch Network for Image Deblurring},
+      author={Zhang, Hongguang},
+      booktitle={Computer Vision and Pattern Recognition (CVPR)},
+      year={2018}
+    }
+  </pre>
+  </blockquote>
+  </div>
+  <div id="div8"></div> <br>
+  
+  <li><a href="https://arxiv.org/pdf/1904.03468.pdf"> <b>Deep Stacked Hierarchical Multi-patch Network for Image Deblurring</b></a><br><b>Hongguang Zhang</b>, Yuchao Dai, Hongdong Li, Piotr Koniusz. <br> IEEE Conference on Computer Vision and Pattern Recognition, 2019 </li>
+  <div id="bib7" style="display:none">
+  <blockquote style="font-size:9pt">
+  <pre>
+@article{zhang2019deep,
+  title={Deep Stacked Hierarchical Multi-patch Network for Image Deblurring},
+  author={Zhang, Hongguang and Dai, Yuchao and Li, Hongdong and Koniusz, Piotr},
+  journal={arXiv preprint arXiv:1904.03468},
+  year={2019}
+}
+  </pre>
+  </blockquote>
+  </div>
+  <font size="-1">[<a href="javascript:copy(div7, bib7)">bib</a>][<a href="https://arxiv.org/pdf/1904.03468.pdf">paper</a>]</font><br>
+  <div id="div7"></div> <br>
+  
+  <li><a href="https://arxiv.org/pdf/1904.03472.pdf"> <b>Few-shot Learning via Saliency-guided Hallucination of Samples</b></a><br><b>Hongguang Zhang</b>, Jing Zhang, Piotr Koniusz. <br> IEEE Conference on Computer Vision and Pattern Recognition, 2019 </li>
+  <div id="bib6" style="display:none">
+  <blockquote style="font-size:9pt">
+  <pre>
+@article{zhang2019few,
+  title={Few-shot Learning via Saliency-guided Hallucination of Samples},
+  author={Zhang, Hongguang and Zhang, Jing and Koniusz, Piotr},
+  journal={arXiv preprint arXiv:1904.03472},
+  year={2019}
+}
+  </pre>
+  </blockquote>
+  </div>
+  <font size="-1">[<a href="javascript:copy(div6, bib6)">bib</a>][<a href="https://arxiv.org/pdf/1904.03472.pdf">paper</a>]</font><br>
+  <div id="div6"></div> <br>
+  
+  <li> <a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=8658920"><b>Power Normalizing Second-order Similarity Network for Few-shot Learning</b></a><br><b>Hongguang Zhang</b>, Piotr Koniusz. <br> IEEE Winter Conference on Applications of Computer Vision, 2019 </li>
+  <div id="bib5" style="display:none">
+  <blockquote style="font-size:9pt">
+  <pre>
+@inproceedings{zhang2019power,
+  title={Power normalizing second-order similarity network for few-shot learning},
+  author={Zhang, Hongguang and Koniusz, Piotr},
+  booktitle={2019 IEEE Winter Conference on Applications of Computer Vision (WACV)},
+  pages={1185--1193},
+  year={2019},
+  organization={IEEE}
+}
+  </pre>
+  </blockquote>
+  </div>
+  <font size="-1">[<a href="javascript:copy(div5, bib5)">bib</a>][<a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=8658920">paper</a>] [<a href="https://github.com/HongguangZhang/SoSN-wacv19-master">code</a>] </font><br>
+  <div id="div5"></div> <br>
+  
+  <li> <a href="https://arxiv.org/pdf/1811.03252.pdf"><b>Model Selection for Generalized Zero-shot Learning</b></a><br><b>Hongguang Zhang</b>, Piotr Koniusz. <br> European Conference on Computer Vision Workshops, 2018 </li>
+  <div id="bib4" style="display:none">
+  <blockquote style="font-size:9pt">
+  <pre>
+@inproceedings{zhang2018model,
+  title={Model selection for generalized zero-shot learning},
+  author={Zhang, Hongguang and Koniusz, Piotr},
+  booktitle={European Conference on Computer Vision},
+  pages={198--204},
+  year={2018},
+  organization={Springer}
+}
+  </pre>
+  </blockquote>
+  </div>
+  <font size="-1">[<a href="javascript:copy(div4, bib4)">bib</a>] [<a href="https://arxiv.org/pdf/1811.03252.pdf">paper</a>]</font><br>
+  <div id="div4"></div> <br>
+  
+  <li> <a href="http://openaccess.thecvf.com/content_ECCV_2018/papers/Piotr_Koniusz_Museum_Exhibit_Identification_ECCV_2018_paper.pdf"><b>Museum exhibit identification challenge for the supervised domain adaptation and beyond</b></a><br>Piotr Koniusz*, Yusuf Tas*, <b>Hongguang Zhang</b>, <i>et al</i>. <br> European Conference on Computer Vision, 2018 <b style="color:Red;"> (Oral)</b></li>
+  <div id="bib3" style="display:none">
+  <blockquote style="font-size:9pt">
+  <pre>
+@InProceedings{Koniusz_2018_ECCV,
+  author = {Koniusz, Piotr and Tas, Yusuf and Zhang, Hongguang and Harandi, Mehrtash and Porikli, Fatih and Zhang, Rui},
+  title = {Museum Exhibit Identification Challenge for the Supervised Domain Adaptation and Beyond},
+  booktitle = {The European Conference on Computer Vision (ECCV)},
+  month = {September},
+  year = {2018}
+}
+  </pre>
+  </blockquote>
+  </div>
+  <font size="-1">[<a href="javascript:copy(div3, bib3)">bib</a>] [<a href="http://openaccess.thecvf.com/content_ECCV_2018/papers/Piotr_Koniusz_Museum_Exhibit_Identification_ECCV_2018_paper.pdf">paper</a>][<a href="http://users.cecs.anu.edu.au/~koniusz/openmic-dataset/">download</a>] </font><br>
+  <div id="div3"></div> <br>
+  
+  <li> <a href="http://openaccess.thecvf.com/content_cvpr_2018/papers/Zhang_Zero-Shot_Kernel_Learning_CVPR_2018_paper.pdf"><b>Zero-shot Kernel Learning</b></a><br><b>Hongguang Zhang*</b>, Piotr Koniusz*. <br> IEEE Conference on Computer Vision and Pattern Recognition, 2018 </li>
+  <div id="bib2" style="display:none">
+  <blockquote style="font-size:9pt">
+  <pre>
+@InProceedings{Zhang_2018_CVPR,
+  author = {Zhang, Hongguang and Koniusz, Piotr},
+  title = {Zero-Shot Kernel Learning},
+  booktitle = {The IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
+  month = {June},
+  year = {2018}
+}
+  </pre>
+  </blockquote>
+  </div>
+  <font size="-1">[<a href="javascript:copy(div2, bib2)">bib</a>] [<a href="http://openaccess.thecvf.com/content_cvpr_2018/papers/Zhang_Zero-Shot_Kernel_Learning_CVPR_2018_paper.pdf">paper</a>] [<a href="https://github.com/HongguangZhang/zskl-cvpr18-master">code</a>] </font><br>
+  <div id="div2"></div> <br>
+  
+  <li> <a href="http://openaccess.thecvf.com/content_cvpr_2018/papers/Koniusz_A_Deeper_Look_CVPR_2018_paper.pdf"><b>A Deeper Look at Power Normalizations</b></a><br>Piotr Koniusz*, <b>Hongguang Zhang*</b>. <br> IEEE Conference on Computer Vision and Pattern Recognition, 2018 </li>
+  <div id="bib1" style="display:none">
+  <blockquote style="font-size:9pt">
+  <pre>
+@InProceedings{Koniusz_2018_CVPR,
+  author = {Koniusz, Piotr and Zhang, Hongguang and Porikli, Fatih},
+  title = {A Deeper Look at Power Normalizations},
+  booktitle = {The IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
+  month = {June},
+  year = {2018}
+}
+  </pre>
+  </blockquote>
+  </div>
+  <font size="-1">[<a href="javascript:copy(div1, bib1)">bib</a>] [<a href="http://openaccess.thecvf.com/content_cvpr_2018/papers/Koniusz_A_Deeper_Look_CVPR_2018_paper.pdf">paper</a>] </font><br>
+  <div id="div1"></div> <br>
+</ul>
+
+<a name = "education" class="disabled"><h2> Education </h2></a>
+<ul>
+<li> 2016 - 2020(estimated): Ph.D., <b>Australian National University</b> </li>
+<li> 2014 - 2016: M.Eng, <b>National University of Defense Technology</b> </li>
+<li> 2010 - 2014: B.Eng, <b>Shanghai Jiao Tong University</b> </li>
+</ul>
+
+<a name = "honors" class="disabled"><h2> Honors and awards</h2></a>
+<ul style="width: 820px;">
+  <li> Data61/CSIRO Scholarship, 2018 </li>
+  <li> ICML Travel Grant, 2017 </li>
+  <li> China Scholarship Council PhD Scholarship, 2016 </li>
+  <li> Merit Postgraduate Student Innovation Fellowship, NUDT, 2016 </li>
+  <li> Kuang-hua Fellowship, NUDT, 2015</li>
+  <li> Outstanding Graduate Award, SJTU, 2014</li>
+  <li> Shanghai Government Scholarship, SJTU, 2013</li>
+  <li> Shanghai Second-class Award of National Undergraduate Electronic Design Contest, SJTU, 2013 </li>
+  <li> Academic Excellence Fellowship, SJTU, 2013 </li>
+  <li> National Endeavor Fellowship, SJTU, 2013 </li>
+  <li> Merit Student, SJTU, 2012-2013 </li>
+</ul>
+
+<a name = "activities" class="disabled"><h2> Professional activities </h2></a>
+<ul style="width: 820px;">
+<li> Co-organized ACCV 2018 Workshop: <b> Museum Exhibit Identification Challenge (Open MIC) for Domain Adaptation and Few-Shot Learning. </b> </li>
+<li> Reviewer: ICCV, BMVC, WACV</li>
+<li> Tutor for <b>ENG4528 Computer Vision Semester 1 2019</b>.
+</ul>
+
+<a name = "activities" class="disabled"><h2> Contact </h2></a>
+<ul style="width: 820px;">
+<li> <b>Office: </b>B345, 118 North Rd, Acton, ACT 2601, Australia</li>
+<li> <b>Email: </b>firstname.lastname@anu.edu.au</li>
+</ul>
+
+</html>
+
