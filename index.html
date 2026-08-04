@@ -1,444 +1,1042 @@
 <!DOCTYPE html>
-<html>
-
-<style>
-body {
-  margin-top: 30px;
-  margin-bottom: 30px;
-  margin-left: 50px;
-  margin-right: 50px;
-}
-a {text-decoration : none; color : #003399;}
-a:hover {text-decoration:underline; color: #8C1515; }
-</style>
-
-<style>
-.disabled{
-    pointer-events: none;
-    color:black;
-}
-</style>
-
-<script>
-function copy(dest, source) {
-  if(dest.source == source) {
-    dest.innerHTML = "";
-    dest.source = null;
-  }
-  else {
-    dest.innerHTML = source.innerHTML;
-    dest.source = source;
-  }
-  dest.blur();
-}
-</script>
+<html lang="en" data-lang="en" data-theme="light">
 
 <head>
-    <title>Hongguang Zhang's Homepage</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="author" content="Hongguang Zhang">
-    <meta name="keywords" content="Hongguang Zhang, ANU">
-    <meta name="robots" content="index,follow">
-    <meta name="description" content="Homepage of Hongguang Zhang, a Ph.D student in the College of Engineering and Computer Science at the Australian National University.">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hongguang Zhang | Homepage</title>
+  <meta name="author" content="Hongguang Zhang">
+  <meta name="keywords" content="Hongguang Zhang, 张洪广, Foundation Models, AI Agent, Few-shot Learning, Computer Vision, AMS, ANU">
+  <meta name="robots" content="index,follow">
+  <meta name="description" content="Homepage of Hongguang Zhang, Associate Professor at the Systems Engineering Institute, Academy of Military Sciences. Research on foundation models, AI agents and deep learning.">
+  <meta property="og:title" content="Hongguang Zhang | Homepage">
+  <meta property="og:description" content="Associate Professor at the Systems Engineering Institute, AMS. Foundation Models, AI Agent, Deep Learning.">
+  <meta property="og:type" content="profile">
+  <meta property="og:image" content="images/google-scholar-photo.png">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🅷</text></svg>">
+
+  <style>
+    :root {
+      --bg: #ffffff;
+      --bg-soft: #f7f8fa;
+      --fg: #1f2328;
+      --fg-muted: #5b6572;
+      --accent: #8c1515;
+      --link: #0b57d0;
+      --border: #e4e8ee;
+      --tag-bg: #eef2f8;
+      --tag-fg: #35507a;
+      --shadow: 0 1px 2px rgba(16, 24, 40, .06), 0 6px 20px rgba(16, 24, 40, .05);
+      --radius: 12px;
+      --maxw: 1000px;
+    }
+
+    html[data-theme="dark"] {
+      --bg: #0f1319;
+      --bg-soft: #161b23;
+      --fg: #e6e9ee;
+      --fg-muted: #9aa4b2;
+      --accent: #ff6b6b;
+      --link: #79b0ff;
+      --border: #262d38;
+      --tag-bg: #1d2735;
+      --tag-fg: #9dc0f0;
+      --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 6px 20px rgba(0, 0, 0, .35);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+                   "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--link); text-decoration: none; }
+    a:hover { color: var(--accent); text-decoration: underline; }
+
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 20px; }
+
+    /* ---------- language / theme switching ---------- */
+    html[data-lang="en"] .zh { display: none !important; }
+    html[data-lang="zh"] .en { display: none !important; }
+
+    /* ---------- top bar ---------- */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+      backdrop-filter: saturate(180%) blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .topbar .wrap {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-height: 54px;
+      flex-wrap: wrap;
+    }
+    nav.sections { display: flex; gap: 4px; flex-wrap: wrap; flex: 1; }
+    nav.sections a {
+      color: var(--fg-muted);
+      font-size: 14px;
+      padding: 5px 10px;
+      border-radius: 8px;
+      white-space: nowrap;
+    }
+    nav.sections a:hover { color: var(--fg); background: var(--bg-soft); text-decoration: none; }
+
+    .switches { display: flex; gap: 8px; margin-left: auto; }
+    .btn {
+      font: inherit;
+      font-size: 13px;
+      line-height: 1;
+      padding: 7px 12px;
+      color: var(--fg);
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      cursor: pointer;
+      transition: border-color .15s, color .15s;
+    }
+    .btn:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ---------- hero ---------- */
+    header.hero { padding: 44px 0 8px; }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+    .avatar {
+      width: 100%;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      display: block;
+    }
+    h1 {
+      margin: 0 0 6px;
+      font-size: 34px;
+      line-height: 1.2;
+      letter-spacing: -.2px;
+    }
+    h1 .cn { font-size: 24px; color: var(--fg-muted); font-weight: 600; }
+    .role { margin: 0; color: var(--fg-muted); }
+    .role strong { color: var(--fg); }
+    .keywords { margin: 10px 0 14px; display: flex; flex-wrap: wrap; gap: 6px; }
+    .keywords span {
+      background: var(--tag-bg);
+      color: var(--tag-fg);
+      font-size: 13px;
+      padding: 3px 10px;
+      border-radius: 999px;
+    }
+    .contact { list-style: none; margin: 0; padding: 0; font-size: 15px; }
+    .contact li { margin: 2px 0; color: var(--fg-muted); }
+    .contact b { color: var(--fg); }
+    .quick { margin-top: 14px; display: flex; gap: 8px; flex-wrap: wrap; }
+    .quick a {
+      font-size: 14px;
+      padding: 6px 12px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--fg);
+      background: var(--bg-soft);
+    }
+    .quick a:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+
+    /* ---------- sections ---------- */
+    section { padding: 34px 0 6px; scroll-margin-top: 70px; }
+    h2 {
+      font-size: 22px;
+      margin: 0 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+    h2 .sub { font-size: 13px; font-weight: 400; color: var(--fg-muted); }
+    p { margin: 0 0 14px; }
+
+    ul.clean { list-style: none; margin: 0; padding: 0; }
+    ul.clean > li {
+      position: relative;
+      padding: 7px 0 7px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    ul.clean > li:last-child { border-bottom: 0; }
+    ul.clean > li::before {
+      content: "";
+      position: absolute;
+      left: 3px;
+      top: 17px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      opacity: .65;
+    }
+    .when { color: var(--fg-muted); font-variant-numeric: tabular-nums; }
+
+    /* ---------- publications ---------- */
+    .pub-list { list-style: none; margin: 0; padding: 0; }
+    .pub {
+      display: grid;
+      grid-template-columns: 148px 1fr;
+      gap: 18px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .pub.no-thumb { grid-template-columns: 1fr; }
+    .pub:last-child { border-bottom: 0; }
+    .pub .thumb {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: #fff;
+      object-fit: contain;
+      padding: 4px;
+    }
+    .pub-title { font-weight: 600; line-height: 1.45; }
+    .pub-authors { color: var(--fg-muted); font-size: 15px; margin-top: 2px; }
+    .pub-authors .me { color: var(--fg); font-weight: 600; }
+    .pub-meta { margin-top: 6px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .venue {
+      font-size: 13px;
+      font-weight: 600;
+      background: var(--tag-bg);
+      color: var(--tag-fg);
+      padding: 2px 9px;
+      border-radius: 6px;
+    }
+    .badge {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 6px;
+      background: color-mix(in srgb, var(--accent) 14%, transparent);
+      color: var(--accent);
+    }
+    .links { margin-left: auto; display: flex; gap: 6px; }
+    .links a, .links button {
+      font: inherit;
+      font-size: 13px;
+      color: var(--fg-muted);
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1px 8px;
+      cursor: pointer;
+    }
+    .links a:hover, .links button:hover { color: var(--accent); border-color: var(--accent); text-decoration: none; }
+    .bib { margin-top: 10px; position: relative; }
+    .bib pre {
+      margin: 0;
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 14px;
+      font-size: 12.5px;
+      line-height: 1.55;
+      overflow-x: auto;
+      color: var(--fg-muted);
+    }
+    .bib .copy { position: absolute; top: 8px; right: 8px; }
+
+    /* ---------- footer ---------- */
+    footer {
+      margin-top: 46px;
+      padding: 22px 0 40px;
+      border-top: 1px solid var(--border);
+      color: var(--fg-muted);
+      font-size: 14px;
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    #totop { margin-left: auto; }
+
+    @media (max-width: 720px) {
+      body { font-size: 15px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 20px; }
+      .avatar { max-width: 180px; }
+      h1 { font-size: 28px; }
+      .pub { grid-template-columns: 1fr; }
+      .pub .thumb { max-width: 200px; }
+      nav.sections { order: 2; width: 100%; overflow-x: auto; }
+      .switches { order: 1; margin-left: auto; }
+    }
+
+    @media print {
+      .topbar, .quick, .links, footer { display: none; }
+      body { font-size: 11pt; }
+    }
+  </style>
 </head>
 
 <body>
 
-<table cellpadding="10" style="font-size:18px">
-<tr>
-<td><img src='images/google-scholar-photo.png' alt="Honguang Zhang"/, height = 250></a></td>
-<td>
-<h1> Hongguang Zhang <span style="font-family:STKaiti; font-size:24pt"> (张洪广)</span> </h1>
-<b>PhD</b> <br>
-Associate Professor at Systems Engineering Institute, AMS <br>
-Foundation Models, AI Agent, Deep Learning <br>  
-<b>Email</b>: zhang.hongguang@outlook.com <br>
-<!-- <b>Office</b>: Gates 234</font> <br> -->
-<a href = "#publications">[Publications]</a> <a href = "#education">[Education]</a> <a href="#honors">[Awards]</a> <a href="#activities">[Activities]</a>
-</td>
-</tr>
-</table>
-
-<p style="width: 1000px;">
-I am an associate professor at Systems Engineering Institute, AMS.
-<br><br>
-I obtained the PhD from CECS of Australian National University (ANU) and Data61/CSIRO in 2020.
-Before this, I graduated from Shanghai Jiao Tong University (SJTU) for B.Eng in Electrical Engineering and Automation in 2014, then obtained the M.Eng from National University of Defense Technology (NUDT) in 2016.
-<br>
-<br>
-My main research topics are computer vision and machine learning. Specifically, I am currently doing research works on zero-shot learning, few-shot learning, federated learning with deep learning approaches. I am also interested in some low-level vision tasks, e. g. image and video deblurring. <br><br>
-</p>
-<br>
-
-<a name = "news" class="disabled"><h2> Recent News </h2></a>
-<li> Honored to receive the CICC Youth Science and Technology Award (<span style="font-family:STKaiti">CICC青年科技奖</span>) </li> 
-<li> Selected into the Beijing Nova Program (<span style="font-family:STKaiti">北京市科技新星计划</span>) </li> 
-<li> Selected into Young Elite Scientists Sponsorship (YESS) Program by CAST (<span style="font-family:STKaiti">青年人才托举工程</span>) </li>
-<li> <a href="https://eccv2022.ecva.net/program/outstanding-reviewers">ECCV'22 Outstanding Reviewer</a></li> 
-<li> 1 paper gets accepted by <b>IJCV</b>. </li> 
-<li> 1 paper gets accepted by <b>TMM</b>. </li>
-<li> Youth Science Fund Project (<span style="font-family:STKaiti">青年科学基金</span>), NSFC is granted </li>
-<br>
-
-  
-<a name = "publications" class="disabled"><h2> Publications
-<font size="3">[<a href="https://scholar.google.com/citations?user=IUYz14IAAAAJ&hl=en">Google Scholar</a>]</font></h2></a>
-(<sup>*</sup>: equal contribution)
-<ul style="width: 1000px;">
-  
-  <li><a href="https://jiansonglei.github.io/files/25CIKM.pdf#:~:text=To%20address%20the%20challenge%2C%20we%20propose%20a%20few-shot,with%20AD%20meta-learning%20scheme%20based%20on%20an%20LVLM."><b>MetaCAN: Improving Generalizability of Few-shot Anomaly Detection with Meta-learning
-  </b></a><br>Zhisheng Lv, Jianfeng Zhang, Songlei Jian, Chenlin Huang, <b>Hongguang Zhang</b>, Guansong Pang and Zhong Liu<br> <b>CIKM 2025</b> </li>
-  <font size="-1">[bib][paper]</font><br>
-  <div id="div20"></div> <br>
-  
-  <li><a href="https://aclanthology.org/2024.acl-long.433.pdf"><b>LLMEmbed: Rethinking Lightweight LLM's Genuine Function in Text Classification
-  </b></a><br>Chun Liu*, <b>Hongguang Zhang*</b>, Kainan Zhao, Xinghai Ju, Lin Yang.<br> <b>ACL 2024</b> </li>
-  <font size="-1">[bib][paper]</font><br>
-  <div id="div19"></div> <br> 
-
-  <li><a href="https://dl.acm.org/doi/abs/10.1145/3626772.3657905"><b>Fake News Detection via Multi-scale Semantic Alignment and Cross-modal Attention
-  </b></a><br>Jiandong Wang*, <b>Hongguang Zhang*</b>, Chun Liu, Xiongjun Yang.<br> <b>SIGIR 2024</b> </li>
-  <font size="-1">[bib][paper]</font><br>
-  <div id="div18"></div> <br>
-  
-  <li><a href=""><b>The Principle and Typical Implementation of Foundation Model-based Intelligent Aided Decision Making System
-  </b></a><br><b>Hongguang Zhang</b>, Lin Yang, Xiongjun Yang, Linru Ma, Hao Dai.<br> <b>JC2 2024</b> </li>
-  <font size="-1">[bib][paper]</font><br>
-  <div id="div17"></div> <br> 
-  
-  <li><a href="https://openaccess.thecvf.com/content/CVPR2024/papers/Deng_Exploiting_Inter-sample_and_Inter-feature_Relations_in_Dataset_Distillation_CVPR_2024_paper.pdf"></:><b>Exploiting Inter-sample and Inter-feature Relations in Dataset Distillation</b></a><br>Wenxiao Deng, Wenbin Li, Tianyu Ding, Lei Wang, <b>Hongguang Zhang</b>, Kuihua Huang, Jing Huo, Yang Gao.<br> <b>CVPR 2024</b> </li>
-  <font size="-1">[bib][paper]</font><br>
-  <div id="div17"></div> <br> 
-  
-  <li><a href="https://www.sciengine.com/SCIS/doi/10.1007/s11432-023-4113-1;JSESSIONID=85a44b08-b473-4d90-bd48-27010da7c094"><b>Saliency-guided Meta-Hallucinator for Few-shot Learning</b></a><br><b>Hongguang Zhang</b></a>, Chun Liu, Jiandong Wang, Linru Ma, Piotr Koniusz, Philip H. S. Torr, Lin Yang.<br> <b>SCIS 2024</b> </li>
-  <font size="-1">[bib][paper]</font><br>
-  <div id="div17"></div> <br> 
-  
-  <li><a href="https://link.springer.com/article/10.1007/s11263-022-01708-3"><b>Event-guided Multi-Patch Network with Self-supervision for Non-uniform Motion Deblurring</b></a><br><b>Hongguang Zhang</b>, Limeng Zhang, Yuchao Dai, Hongdong Li, Piotr Koniusz. <br> <b>IJCV 2023</b> </li>
-  <div id="bib16" style="display:none">
-  <blockquote style="font-size:9pt">
-  <pre>
-    @article{zhang2022event,
-     title={Event-guided Multi-patch Network with Self-supervision for Non-uniform Motion Deblurring},
-     author={Zhang, Hongguang and Zhang, Limeng and Dai, Yuchao and Li, Hongdong and Koniusz, Piotr},
-     journal={International Journal of Computer Vision},
-     pages={1--18},
-     year={2022},
-     publisher={Springer}}
-  </pre>
-  </blockquote>
+  <div class="topbar">
+    <div class="wrap">
+      <nav class="sections">
+        <a href="#about"><span class="en">About</span><span class="zh">简介</span></a>
+        <a href="#news"><span class="en">News</span><span class="zh">动态</span></a>
+        <a href="#publications"><span class="en">Publications</span><span class="zh">论文</span></a>
+        <a href="#education"><span class="en">Education</span><span class="zh">教育经历</span></a>
+        <a href="#projects"><span class="en">Projects</span><span class="zh">科研项目</span></a>
+        <a href="#honors"><span class="en">Awards</span><span class="zh">荣誉奖励</span></a>
+        <a href="#activities"><span class="en">Services</span><span class="zh">学术服务</span></a>
+      </nav>
+      <div class="switches">
+        <button class="btn" id="lang-toggle" type="button" aria-label="Switch language / 切换语言">
+          <span class="en">中文</span><span class="zh">English</span>
+        </button>
+        <button class="btn" id="theme-toggle" type="button" aria-label="Switch theme / 切换主题">
+          <span id="theme-icon">🌙</span>
+        </button>
+      </div>
+    </div>
   </div>
-  <font size="-1">[<a href="javascript:copy(div16, bib16)">bib</a>][paper]</font><br>
-  <div id="div16"></div> <br> 
-  
-  <li><a href="https://openaccess.thecvf.com/content/ACCV2022/papers/Zhang_Improving_Few-shot_Learning_by_Spatially-aware_Matching_and_CrossTransformer_ACCV_2022_paper.pdf"><b>Improving Few-shot Learning by Spatially-aware Matching and CrossTransformer</b></a><br><b>Hongguang Zhang</b>, Piotr Koniusz, Philip H. S. Torr. <br> <b>ACCV 2022</b> </li>
-  <div id="bib15" style="display:none">
-  <blockquote style="font-size:9pt">
-  <pre>
-  @InProceedings{Zhang_2022_ACCV,
-    author    = {Zhang, Hongguang and Torr, Philip H. S. and Koniusz, Piotr},
-    title     = {Improving Few-shot Learning by Spatially-aware Matching and CrossTransformer},
-    booktitle = {Proceedings of the Asian Conference on Computer Vision (ACCV)},
-    month     = {December},
-    year      = {2022},
-    pages     = {1298-1315}}
-  </pre>
-  </blockquote>
-  </div>
-  <font size="-1">[<a href="javascript:copy(div15, bib15)">bib</a>][<a href="https://arxiv.org/abs/2001.01600">paper</a>]</font><br>
-  <div id="div15"></div> <br>  
-  
-  <li><a href="https://ieeexplore.ieee.org/document/9681205"><b>Multi-level Second-order Few-shot Learning</b></a><br><b>Hongguang Zhang</b>, Hongdong Li, Piotr Koniusz. <br> <b>TMM 2022</b> </li>
-  <div id="bib14" style="display:none">
-  <blockquote style="font-size:9pt">
-  <pre>
-    @ARTICLE{9681205,
-      author={Zhang, Hongguang and Li, Hongdong and Koniusz, Piotr},
-      journal={IEEE Transactions on Multimedia}, 
-      title={Multi-level Second-order Few-shot Learning}, 
-      year={2022},
-      volume={},
-      number={},
-      pages={1-1},
-      doi={10.1109/TMM.2022.3142955}}
-  </pre>
-  </blockquote>
-  </div>
-  <font size="-1">[<a href="javascript:copy(div14, bib14)">bib</a>][<a href="https://ieeexplore.ieee.org/document/9681205">paper</a>]</font><br>
-  <div id="div14"></div> <br> 
 
-  <li><a href="https://arxiv.org/pdf/2001.03919.pdf"><b>Rethinking Class Relations: Absolute-relative Supervised and Unsupervised Few-shot Learning</b></a><br><b>Hongguang Zhang</b>, Piotr Koniusz, Songlei Jian, Hongdong Li, Philip H. S. Torr. <br> <b>CVPR 2021</b> </li>
-<div id="bib13" style="display:none">
-  <blockquote style="font-size:9pt">
-  <pre>
-    @article{zhang2020rethinking,
-      title={Rethinking Class Relations: Absolute-relative Supervised and Unsupervised Few-shot Learning},
-      author={Zhang, Hongguang and Koniusz, Piotr and Jian, Songlei and Li, Hongdong and Torr, Philip HS},
-      journal={arXiv preprint arXiv:2001.03919},
-      year={2020}
-    }
-  </pre>
-  </blockquote>
-  </div>
-  <font size="-1">[<a href="javascript:copy(div13, bib13)">bib</a>][<a href="https://arxiv.org/pdf/2001.03919.pdf">paper</a>]</font><br>
-  <div id="div13"></div> <br> 
+  <div class="wrap">
 
-  <li><a href="https://arxiv.org/pdf/2012.00301.pdf"><b>Dual Pixel Exploration: Simultaneous Depth Estimation and Image Restoration</b></a><br>Liyuan Pan, Shah Chowdhury, Richard Hartley, Miaomiao Liu, <b>Hongguang Zhang</b>, Hongdong Li. <br> <b>CVPR 2021</b> <b style="color:Red;"> (Oral)</b> </li>
-<div id="bib12" style="display:none">
-  <blockquote style="font-size:9pt">
-  <pre>
-    @article{pan2020dual,
-      title={Dual Pixel Exploration: Simultaneous Depth Estimation and Image Restoration},
-      author={Pan, Liyuan and Chowdhury, Shah and Hartley, Richard and Liu, Miaomiao and Zhang, Hongguang and Li, Hongdong},
-      journal={arXiv preprint arXiv:2012.00301},
-      year={2020}
-    }
-  </pre>
-  </blockquote>
-  </div>
-  <font size="-1">[<a href="javascript:copy(div12, bib12)">bib</a>][<a href="https://arxiv.org/pdf/2012.00301.pdf">paper</a>]</font><br>
-  <div id="div12"></div> <br>  
+    <header class="hero" id="about">
+      <div class="hero-grid">
+        <div>
+          <img class="avatar" src="images/google-scholar-photo.png" alt="Hongguang Zhang">
+        </div>
+        <div>
+          <h1>
+            <span class="en">Hongguang Zhang</span><span class="zh">张洪广</span>
+            <span class="cn en">（张洪广）</span><span class="cn zh">Hongguang Zhang</span>
+          </h1>
+          <p class="role">
+            <span class="en"><strong>Associate Professor</strong>, Systems Engineering Institute, Academy of Military Sciences (AMS)</span>
+            <span class="zh"><strong>副研究员</strong>，军事科学院系统工程研究院</span>
+          </p>
+          <div class="keywords">
+            <span class="en">Foundation Models</span><span class="zh">基础模型</span>
+            <span class="en">AI Agent</span><span class="zh">智能体</span>
+            <span class="en">Deep Learning</span><span class="zh">深度学习</span>
+            <span class="en">Computer Vision</span><span class="zh">计算机视觉</span>
+          </div>
+          <ul class="contact">
+            <li><b>Email</b>: <a href="mailto:zhang.hongguang@outlook.com">zhang.hongguang@outlook.com</a></li>
+            <li>
+              <span class="en"><b>Ph.D.</b>, Australian National University &amp; Data61/CSIRO, 2020</span>
+              <span class="zh"><b>博士</b>，澳大利亚国立大学 &amp; Data61/CSIRO，2020 年</span>
+            </li>
+          </ul>
+          <div class="quick">
+            <a href="https://scholar.google.com/citations?user=IUYz14IAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+            <a href="https://github.com/HongguangZhang" target="_blank" rel="noopener">GitHub</a>
+            <a href="#publications"><span class="en">Publications</span><span class="zh">论文列表</span></a>
+          </div>
+        </div>
+      </div>
 
-  <li> <a href="https://arxiv.org/pdf/2012.13975.pdf"><b>Power Normalizations in Fine-grained Image, Few-shot Image and Graph Classification
-</b></a><br>Piotr Koniusz*, <b>Hongguang Zhang*</b>. <br> <b>TPAMI 2021</b></li>
-<div id="bib11" style="display:none">
-  <blockquote style="font-size:9pt">
-  <pre>
-    @article{koniusz2020power,
-      title={Power normalizations in fine-grained image, few-shot image and graph classification},
-      author={Koniusz, Piotr and Zhang, Hongguang},
-      journal={arXiv preprint arXiv:2012.13975},
-      year={2020}
-    }
-  </pre>
-  </blockquote>
-  </div>
-  <font size="-1">[<a href="javascript:copy(div11, bib11)">bib</a>][<a href="https://arxiv.org/pdf/2012.13975.pdf">paper</a>]</font><br>
-  <div id="div11"></div> <br> 
+      <p class="en" style="margin-top:26px">
+        I am an Associate Professor at the Systems Engineering Institute, Academy of Military Sciences (AMS).
+        I received my Ph.D. from the College of Engineering and Computer Science (CECS), Australian National
+        University (ANU) and Data61/CSIRO in 2020. Before that, I received my B.Eng. in Electrical Engineering
+        and Automation from Shanghai Jiao Tong University (SJTU) in 2014, and my M.Eng. from the National
+        University of Defense Technology (NUDT) in 2016.
+      </p>
+      <p class="en">
+        My research lies in computer vision and machine learning, and currently focuses on foundation models
+        and AI agents. I have also worked extensively on zero-shot learning, few-shot learning and federated
+        learning, as well as low-level vision tasks such as image and video deblurring.
+      </p>
+      <p class="zh" style="margin-top:26px">
+        我是军事科学院系统工程研究院副研究员。2020 年博士毕业于澳大利亚国立大学（ANU）工程与计算机科学学院及
+        Data61/CSIRO；此前于 2014 年获上海交通大学电气工程及其自动化专业工学学士学位，2016
+        年获国防科技大学工学硕士学位。
+      </p>
+      <p class="zh">
+        我的研究方向为计算机视觉与机器学习，当前主要聚焦于基础模型与智能体（AI Agent）。此外，在零样本学习、小样本学习、联邦学习，以及图像与视频去模糊等底层视觉任务方面开展了系统性研究工作。
+      </p>
+    </header>
 
-  <li><a href="http://www.ecva.net/papers/eccv_2020/papers_ECCV/papers/123500511.pdf"><b>Few-shot Action Recognition with Permutation-invariant Attention</b></a><br><b>Hongguang Zhang</b>, Li Zhang, Xiaojuan Qi, Hongdong Li, Philip H. S. Torr, Piotr Koniusz. <br> <b>ECCV 2020</b> <b style="color:Red;"> (Spotlight)</b> </li>
-<div id="bib10" style="display:none">
-  <blockquote style="font-size:9pt">
-  <pre>
-    @inproceedings{zhang2020few,
-      title={Few-shot action recognition with permutation-invariant attention},
-      author={Zhang, H and Zhang, L and Qi, X and Li, H and Torr, PHS and Koniusz, P},
-      booktitle={Proceedings of the European Conference on Computer Vision (ECCV 2020)},
-      volume={12350},
-      year={2020},
-      organization={Springer}
-    }
-  </pre>
-  </blockquote>
-  </div>
-  <font size="-1">[<a href="javascript:copy(div10, bib10)">bib</a>][<a href="http://www.ecva.net/papers/eccv_2020/papers_ECCV/papers/123500511.pdf">paper</a>][<a href="https://github.com/HongguangZhang/arn-eccv20-master">code</a>]</font><br>
-  <!--<td><a href="images/arn.png"><img src='images/arn.png' alt="arn"/, height = 100></a></td> -->
-<div id="div10"></div> <br> 
+    <section id="news">
+      <h2><span class="en">Recent News</span><span class="zh">近期动态</span></h2>
+      <ul class="clean">
+        <li>
+          <span class="en">Honored to receive the CICC Youth Science and Technology Award (中国指挥与控制学会青年科技奖).</span>
+          <span class="zh">荣获中国指挥与控制学会青年科技奖。</span>
+        </li>
+        <li>
+          <span class="en">Selected into the Beijing Nova Program (北京市科技新星计划).</span>
+          <span class="zh">入选北京市科技新星计划。</span>
+        </li>
+        <li>
+          <span class="en">Selected into the Young Elite Scientists Sponsorship (YESS) Program by CAST (青年人才托举工程).</span>
+          <span class="zh">入选中国科协青年人才托举工程。</span>
+        </li>
+        <li>
+          <span class="en"><a href="https://eccv2022.ecva.net/program/outstanding-reviewers" target="_blank" rel="noopener">ECCV'22 Outstanding Reviewer</a>.</span>
+          <span class="zh">获评 <a href="https://eccv2022.ecva.net/program/outstanding-reviewers" target="_blank" rel="noopener">ECCV'22 杰出审稿人</a>。</span>
+        </li>
+        <li>
+          <span class="en">One paper accepted by <b>IJCV</b>.</span>
+          <span class="zh">1 篇论文被 <b>IJCV</b> 录用。</span>
+        </li>
+        <li>
+          <span class="en">One paper accepted by <b>TMM</b>.</span>
+          <span class="zh">1 篇论文被 <b>TMM</b> 录用。</span>
+        </li>
+        <li>
+          <span class="en">Youth Science Fund Project (青年科学基金), NSFC, is granted.</span>
+          <span class="zh">获批国家自然科学基金青年科学基金项目。</span>
+        </li>
+      </ul>
+    </section>
 
-  <li><a href="https://onlinelibrary.wiley.com/doi/epdf/10.1002/cav.1964"> <b>One-shot Video-based Person Re-Identification with Variance Subsampling Algorithm</b></a><br>Jing Zhao, Wenjing Yang, Mingliang Yang, Wanrong Huang, Qilong Yang, <b>Hongguang Zhang</b>. <br> <b>CAVW 2020</b> </li>
-<div id="bib9" style="display:none">
-  <blockquote style="font-size:9pt">
-  <pre>
-    @article{zhao2020one,
-      title={One-shot video-based person re-identification with variance subsampling algorithm},
-      author={Zhao, Jing and Yang, Wenjing and Yang, Mingliang and Huang, Wanrong and Yang, Qiong and Zhang, Hongguang},
-      journal={Computer Animation and Virtual Worlds},
-      volume={31},
-      number={4-5},
-      pages={e1964},
-      year={2020},
-      publisher={Wiley Online Library}
-    }
-  </pre>
-  </blockquote>
-  </div>
-  <font size="-1">[<a href="javascript:copy(div9, bib9)">bib</a>][<a href="https://onlinelibrary.wiley.com/doi/epdf/10.1002/cav.1964">paper</a>]</font><br>
-  <div id="div9"></div> <br> 
-  
-  <li><a href="https://arxiv.org/pdf/1904.03468.pdf"> <b>Deep Stacked Hierarchical Multi-patch Network for Image Deblurring</b></a><br><b>Hongguang Zhang</b>, Yuchao Dai, Hongdong Li, Piotr Koniusz. <br> <b>CVPR 2019</b>  </li>
-  <div id="bib7" style="display:none">
-  <blockquote style="font-size:9pt">
-  <pre>
-@article{zhang2019deep,
+    <section id="publications">
+      <h2>
+        <span class="en">Publications</span><span class="zh">论文成果</span>
+        <span class="sub">
+          <a href="https://scholar.google.com/citations?user=IUYz14IAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+          &nbsp;·&nbsp;
+          <span class="en"><sup>*</sup> equal contribution</span><span class="zh"><sup>*</sup> 同等贡献</span>
+        </span>
+      </h2>
+
+      <ul class="pub-list">
+
+        <li class="pub no-thumb">
+          <div>
+            <div class="pub-title"><a href="https://jiansonglei.github.io/files/25CIKM.pdf" target="_blank" rel="noopener">MetaCAN: Improving Generalizability of Few-shot Anomaly Detection with Meta-learning</a></div>
+            <div class="pub-authors">Zhisheng Lv, Jianfeng Zhang, Songlei Jian, Chenlin Huang, <span class="me">Hongguang Zhang</span>, Guansong Pang, Zhong Liu</div>
+            <div class="pub-meta">
+              <span class="venue">CIKM 2025</span>
+              <span class="links">
+                <button type="button" data-bib>bib</button>
+                <a href="https://jiansonglei.github.io/files/25CIKM.pdf" target="_blank" rel="noopener">paper</a>
+              </span>
+            </div>
+            <div class="bib" hidden><button class="btn copy" type="button">copy</button><pre>@inproceedings{lv2025metacan,
+  title={MetaCAN: Improving Generalizability of Few-shot Anomaly Detection with Meta-learning},
+  author={Lv, Zhisheng and Zhang, Jianfeng and Jian, Songlei and Huang, Chenlin and Zhang, Hongguang and Pang, Guansong and Liu, Zhong},
+  booktitle={Proceedings of the ACM International Conference on Information and Knowledge Management (CIKM)},
+  year={2025}
+}</pre></div>
+          </div>
+        </li>
+
+        <li class="pub no-thumb">
+          <div>
+            <div class="pub-title"><a href="https://aclanthology.org/2024.acl-long.433.pdf" target="_blank" rel="noopener">LLMEmbed: Rethinking Lightweight LLM's Genuine Function in Text Classification</a></div>
+            <div class="pub-authors">Chun Liu<sup>*</sup>, <span class="me">Hongguang Zhang</span><sup>*</sup>, Kainan Zhao, Xinghai Ju, Lin Yang</div>
+            <div class="pub-meta">
+              <span class="venue">ACL 2024</span>
+              <span class="links">
+                <button type="button" data-bib>bib</button>
+                <a href="https://aclanthology.org/2024.acl-long.433.pdf" target="_blank" rel="noopener">paper</a>
+              </span>
+            </div>
+            <div class="bib" hidden><button class="btn copy" type="button">copy</button><pre>@inproceedings{liu2024llmembed,
+  title={LLMEmbed: Rethinking Lightweight LLM's Genuine Function in Text Classification},
+  author={Liu, Chun and Zhang, Hongguang and Zhao, Kainan and Ju, Xinghai and Yang, Lin},
+  booktitle={Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (ACL)},
+  year={2024}
+}</pre></div>
+          </div>
+        </li>
+
+        <li class="pub no-thumb">
+          <div>
+            <div class="pub-title"><a href="https://dl.acm.org/doi/abs/10.1145/3626772.3657905" target="_blank" rel="noopener">Fake News Detection via Multi-scale Semantic Alignment and Cross-modal Attention</a></div>
+            <div class="pub-authors">Jiandong Wang<sup>*</sup>, <span class="me">Hongguang Zhang</span><sup>*</sup>, Chun Liu, Xiongjun Yang</div>
+            <div class="pub-meta">
+              <span class="venue">SIGIR 2024</span>
+              <span class="links">
+                <button type="button" data-bib>bib</button>
+                <a href="https://dl.acm.org/doi/abs/10.1145/3626772.3657905" target="_blank" rel="noopener">paper</a>
+              </span>
+            </div>
+            <div class="bib" hidden><button class="btn copy" type="button">copy</button><pre>@inproceedings{wang2024fake,
+  title={Fake News Detection via Multi-scale Semantic Alignment and Cross-modal Attention},
+  author={Wang, Jiandong and Zhang, Hongguang and Liu, Chun and Yang, Xiongjun},
+  booktitle={Proceedings of the 47th International ACM SIGIR Conference on Research and Development in Information Retrieval (SIGIR)},
+  year={2024}
+}</pre></div>
+          </div>
+        </li>
+
+        <li class="pub no-thumb">
+          <div>
+            <div class="pub-title">The Principle and Typical Implementation of Foundation Model-based Intelligent Aided Decision Making System</div>
+            <div class="pub-authors"><span class="me">Hongguang Zhang</span>, Lin Yang, Xiongjun Yang, Linru Ma, Hao Dai</div>
+            <div class="pub-meta"><span class="venue">JC2 2024</span></div>
+          </div>
+        </li>
+
+        <li class="pub no-thumb">
+          <div>
+            <div class="pub-title"><a href="https://openaccess.thecvf.com/content/CVPR2024/papers/Deng_Exploiting_Inter-sample_and_Inter-feature_Relations_in_Dataset_Distillation_CVPR_2024_paper.pdf" target="_blank" rel="noopener">Exploiting Inter-sample and Inter-feature Relations in Dataset Distillation</a></div>
+            <div class="pub-authors">Wenxiao Deng, Wenbin Li, Tianyu Ding, Lei Wang, <span class="me">Hongguang Zhang</span>, Kuihua Huang, Jing Huo, Yang Gao</div>
+            <div class="pub-meta">
+              <span class="venue">CVPR 2024</span>
+              <span class="links">
+                <button type="button" data-bib>bib</button>
+                <a href="https://openaccess.thecvf.com/content/CVPR2024/papers/Deng_Exploiting_Inter-sample_and_Inter-feature_Relations_in_Dataset_Distillation_CVPR_2024_paper.pdf" target="_blank" rel="noopener">paper</a>
+              </span>
+            </div>
+            <div class="bib" hidden><button class="btn copy" type="button">copy</button><pre>@inproceedings{deng2024exploiting,
+  title={Exploiting Inter-sample and Inter-feature Relations in Dataset Distillation},
+  author={Deng, Wenxiao and Li, Wenbin and Ding, Tianyu and Wang, Lei and Zhang, Hongguang and Huang, Kuihua and Huo, Jing and Gao, Yang},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  year={2024}
+}</pre></div>
+          </div>
+        </li>
+
+        <li class="pub no-thumb">
+          <div>
+            <div class="pub-title"><a href="https://www.sciengine.com/SCIS/doi/10.1007/s11432-023-4113-1" target="_blank" rel="noopener">Saliency-guided Meta-Hallucinator for Few-shot Learning</a></div>
+            <div class="pub-authors"><span class="me">Hongguang Zhang</span>, Chun Liu, Jiandong Wang, Linru Ma, Piotr Koniusz, Philip H. S. Torr, Lin Yang</div>
+            <div class="pub-meta">
+              <span class="venue">SCIS 2024</span>
+              <span class="links">
+                <button type="button" data-bib>bib</button>
+                <a href="https://www.sciengine.com/SCIS/doi/10.1007/s11432-023-4113-1" target="_blank" rel="noopener">paper</a>
+              </span>
+            </div>
+            <div class="bib" hidden><button class="btn copy" type="button">copy</button><pre>@article{zhang2024saliency,
+  title={Saliency-guided Meta-Hallucinator for Few-shot Learning},
+  author={Zhang, Hongguang and Liu, Chun and Wang, Jiandong and Ma, Linru and Koniusz, Piotr and Torr, Philip H. S. and Yang, Lin},
+  journal={Science China Information Sciences},
+  year={2024},
+  doi={10.1007/s11432-023-4113-1}
+}</pre></div>
+          </div>
+        </li>
+
+        <li class="pub no-thumb">
+          <div>
+            <div class="pub-title"><a href="https://link.springer.com/article/10.1007/s11263-022-01708-3" target="_blank" rel="noopener">Event-guided Multi-Patch Network with Self-supervision for Non-uniform Motion Deblurring</a></div>
+            <div class="pub-authors"><span class="me">Hongguang Zhang</span>, Limeng Zhang, Yuchao Dai, Hongdong Li, Piotr Koniusz</div>
+            <div class="pub-meta">
+              <span class="venue">IJCV 2023</span>
+              <span class="links">
+                <button type="button" data-bib>bib</button>
+                <a href="https://link.springer.com/article/10.1007/s11263-022-01708-3" target="_blank" rel="noopener">paper</a>
+              </span>
+            </div>
+            <div class="bib" hidden><button class="btn copy" type="button">copy</button><pre>@article{zhang2022event,
+  title={Event-guided Multi-patch Network with Self-supervision for Non-uniform Motion Deblurring},
+  author={Zhang, Hongguang and Zhang, Limeng and Dai, Yuchao and Li, Hongdong and Koniusz, Piotr},
+  journal={International Journal of Computer Vision},
+  pages={1--18},
+  year={2022},
+  publisher={Springer}
+}</pre></div>
+          </div>
+        </li>
+
+        <li class="pub no-thumb">
+          <div>
+            <div class="pub-title"><a href="https://openaccess.thecvf.com/content/ACCV2022/papers/Zhang_Improving_Few-shot_Learning_by_Spatially-aware_Matching_and_CrossTransformer_ACCV_2022_paper.pdf" target="_blank" rel="noopener">Improving Few-shot Learning by Spatially-aware Matching and CrossTransformer</a></div>
+            <div class="pub-authors"><span class="me">Hongguang Zhang</span>, Piotr Koniusz, Philip H. S. Torr</div>
+            <div class="pub-meta">
+              <span class="venue">ACCV 2022</span>
+              <span class="links">
+                <button type="button" data-bib>bib</button>
+                <a href="https://arxiv.org/abs/2001.01600" target="_blank" rel="noopener">paper</a>
+              </span>
+            </div>
+            <div class="bib" hidden><button class="btn copy" type="button">copy</button><pre>@InProceedings{Zhang_2022_ACCV,
+  author    = {Zhang, Hongguang and Torr, Philip H. S. and Koniusz, Piotr},
+  title     = {Improving Few-shot Learning by Spatially-aware Matching and CrossTransformer},
+  booktitle = {Proceedings of the Asian Conference on Computer Vision (ACCV)},
+  month     = {December},
+  year      = {2022},
+  pages     = {1298-1315}
+}</pre></div>
+          </div>
+        </li>
+
+        <li class="pub no-thumb">
+          <div>
+            <div class="pub-title"><a href="https://ieeexplore.ieee.org/document/9681205" target="_blank" rel="noopener">Multi-level Second-order Few-shot Learning</a></div>
+            <div class="pub-authors"><span class="me">Hongguang Zhang</span>, Hongdong Li, Piotr Koniusz</div>
+            <div class="pub-meta">
+              <span class="venue">TMM 2022</span>
+              <span class="links">
+                <button type="button" data-bib>bib</button>
+                <a href="https://ieeexplore.ieee.org/document/9681205" target="_blank" rel="noopener">paper</a>
+              </span>
+            </div>
+            <div class="bib" hidden><button class="btn copy" type="button">copy</button><pre>@article{9681205,
+  author={Zhang, Hongguang and Li, Hongdong and Koniusz, Piotr},
+  journal={IEEE Transactions on Multimedia},
+  title={Multi-level Second-order Few-shot Learning},
+  year={2022},
+  pages={1-1},
+  doi={10.1109/TMM.2022.3142955}
+}</pre></div>
+          </div>
+        </li>
+
+        <li class="pub no-thumb">
+          <div>
+            <div class="pub-title"><a href="https://arxiv.org/pdf/2001.03919.pdf" target="_blank" rel="noopener">Rethinking Class Relations: Absolute-relative Supervised and Unsupervised Few-shot Learning</a></div>
+            <div class="pub-authors"><span class="me">Hongguang Zhang</span>, Piotr Koniusz, Songlei Jian, Hongdong Li, Philip H. S. Torr</div>
+            <div class="pub-meta">
+              <span class="venue">CVPR 2021</span>
+              <span class="links">
+                <button type="button" data-bib>bib</button>
+                <a href="https://arxiv.org/pdf/2001.03919.pdf" target="_blank" rel="noopener">paper</a>
+              </span>
+            </div>
+            <div class="bib" hidden><button class="btn copy" type="button">copy</button><pre>@article{zhang2020rethinking,
+  title={Rethinking Class Relations: Absolute-relative Supervised and Unsupervised Few-shot Learning},
+  author={Zhang, Hongguang and Koniusz, Piotr and Jian, Songlei and Li, Hongdong and Torr, Philip HS},
+  journal={arXiv preprint arXiv:2001.03919},
+  year={2020}
+}</pre></div>
+          </div>
+        </li>
+
+        <li class="pub no-thumb">
+          <div>
+            <div class="pub-title"><a href="https://arxiv.org/pdf/2012.00301.pdf" target="_blank" rel="noopener">Dual Pixel Exploration: Simultaneous Depth Estimation and Image Restoration</a></div>
+            <div class="pub-authors">Liyuan Pan, Shah Chowdhury, Richard Hartley, Miaomiao Liu, <span class="me">Hongguang Zhang</span>, Hongdong Li</div>
+            <div class="pub-meta">
+              <span class="venue">CVPR 2021</span>
+              <span class="badge">Oral</span>
+              <span class="links">
+                <button type="button" data-bib>bib</button>
+                <a href="https://arxiv.org/pdf/2012.00301.pdf" target="_blank" rel="noopener">paper</a>
+              </span>
+            </div>
+            <div class="bib" hidden><button class="btn copy" type="button">copy</button><pre>@article{pan2020dual,
+  title={Dual Pixel Exploration: Simultaneous Depth Estimation and Image Restoration},
+  author={Pan, Liyuan and Chowdhury, Shah and Hartley, Richard and Liu, Miaomiao and Zhang, Hongguang and Li, Hongdong},
+  journal={arXiv preprint arXiv:2012.00301},
+  year={2020}
+}</pre></div>
+          </div>
+        </li>
+
+        <li class="pub no-thumb">
+          <div>
+            <div class="pub-title"><a href="https://arxiv.org/pdf/2012.13975.pdf" target="_blank" rel="noopener">Power Normalizations in Fine-grained Image, Few-shot Image and Graph Classification</a></div>
+            <div class="pub-authors">Piotr Koniusz<sup>*</sup>, <span class="me">Hongguang Zhang</span><sup>*</sup></div>
+            <div class="pub-meta">
+              <span class="venue">TPAMI 2021</span>
+              <span class="links">
+                <button type="button" data-bib>bib</button>
+                <a href="https://arxiv.org/pdf/2012.13975.pdf" target="_blank" rel="noopener">paper</a>
+              </span>
+            </div>
+            <div class="bib" hidden><button class="btn copy" type="button">copy</button><pre>@article{koniusz2020power,
+  title={Power normalizations in fine-grained image, few-shot image and graph classification},
+  author={Koniusz, Piotr and Zhang, Hongguang},
+  journal={arXiv preprint arXiv:2012.13975},
+  year={2020}
+}</pre></div>
+          </div>
+        </li>
+
+        <li class="pub">
+          <a href="images/arn.png" target="_blank" rel="noopener"><img class="thumb" src="images/arn.png" alt="ARN"></a>
+          <div>
+            <div class="pub-title"><a href="http://www.ecva.net/papers/eccv_2020/papers_ECCV/papers/123500511.pdf" target="_blank" rel="noopener">Few-shot Action Recognition with Permutation-invariant Attention</a></div>
+            <div class="pub-authors"><span class="me">Hongguang Zhang</span>, Li Zhang, Xiaojuan Qi, Hongdong Li, Philip H. S. Torr, Piotr Koniusz</div>
+            <div class="pub-meta">
+              <span class="venue">ECCV 2020</span>
+              <span class="badge">Spotlight</span>
+              <span class="links">
+                <button type="button" data-bib>bib</button>
+                <a href="http://www.ecva.net/papers/eccv_2020/papers_ECCV/papers/123500511.pdf" target="_blank" rel="noopener">paper</a>
+                <a href="https://github.com/HongguangZhang/arn-eccv20-master" target="_blank" rel="noopener">code</a>
+              </span>
+            </div>
+            <div class="bib" hidden><button class="btn copy" type="button">copy</button><pre>@inproceedings{zhang2020few,
+  title={Few-shot action recognition with permutation-invariant attention},
+  author={Zhang, H and Zhang, L and Qi, X and Li, H and Torr, PHS and Koniusz, P},
+  booktitle={Proceedings of the European Conference on Computer Vision (ECCV 2020)},
+  volume={12350},
+  year={2020},
+  organization={Springer}
+}</pre></div>
+          </div>
+        </li>
+
+        <li class="pub no-thumb">
+          <div>
+            <div class="pub-title"><a href="https://onlinelibrary.wiley.com/doi/epdf/10.1002/cav.1964" target="_blank" rel="noopener">One-shot Video-based Person Re-Identification with Variance Subsampling Algorithm</a></div>
+            <div class="pub-authors">Jing Zhao, Wenjing Yang, Mingliang Yang, Wanrong Huang, Qilong Yang, <span class="me">Hongguang Zhang</span></div>
+            <div class="pub-meta">
+              <span class="venue">CAVW 2020</span>
+              <span class="links">
+                <button type="button" data-bib>bib</button>
+                <a href="https://onlinelibrary.wiley.com/doi/epdf/10.1002/cav.1964" target="_blank" rel="noopener">paper</a>
+              </span>
+            </div>
+            <div class="bib" hidden><button class="btn copy" type="button">copy</button><pre>@article{zhao2020one,
+  title={One-shot video-based person re-identification with variance subsampling algorithm},
+  author={Zhao, Jing and Yang, Wenjing and Yang, Mingliang and Huang, Wanrong and Yang, Qiong and Zhang, Hongguang},
+  journal={Computer Animation and Virtual Worlds},
+  volume={31},
+  number={4-5},
+  pages={e1964},
+  year={2020},
+  publisher={Wiley Online Library}
+}</pre></div>
+          </div>
+        </li>
+
+        <li class="pub">
+          <a href="images/dmphn.png" target="_blank" rel="noopener"><img class="thumb" src="images/dmphn.png" alt="DMPHN"></a>
+          <div>
+            <div class="pub-title"><a href="https://arxiv.org/pdf/1904.03468.pdf" target="_blank" rel="noopener">Deep Stacked Hierarchical Multi-patch Network for Image Deblurring</a></div>
+            <div class="pub-authors"><span class="me">Hongguang Zhang</span>, Yuchao Dai, Hongdong Li, Piotr Koniusz</div>
+            <div class="pub-meta">
+              <span class="venue">CVPR 2019</span>
+              <span class="links">
+                <button type="button" data-bib>bib</button>
+                <a href="https://arxiv.org/pdf/1904.03468.pdf" target="_blank" rel="noopener">paper</a>
+                <a href="https://github.com/HongguangZhang/DMPHN-cvpr19-master" target="_blank" rel="noopener">code</a>
+              </span>
+            </div>
+            <div class="bib" hidden><button class="btn copy" type="button">copy</button><pre>@article{zhang2019deep,
   title={Deep Stacked Hierarchical Multi-patch Network for Image Deblurring},
   author={Zhang, Hongguang and Dai, Yuchao and Li, Hongdong and Koniusz, Piotr},
   journal={arXiv preprint arXiv:1904.03468},
   year={2019}
-}
-  </pre>
-  </blockquote>
-  </div>
-  <font size="-1">[<a href="javascript:copy(div7, bib7)">bib</a>][<a href="https://arxiv.org/pdf/1904.03468.pdf">paper</a>][<a href="https://github.com/HongguangZhang/DMPHN-cvpr19-master">code</a>]</font><br>
-  <!--<td><a href="images/dmphn.png"><img src='images/dmphn.png' alt="dmphn"/, height = 100></a></td>-->
-  <div id="div7"></div> <br>
-  
-  <li><a href="https://arxiv.org/pdf/1904.03472.pdf"> <b>Few-shot Learning via Saliency-guided Hallucination of Samples</b></a><br><b>Hongguang Zhang</b>, Jing Zhang, Piotr Koniusz. <br> <b>CVPR 2019</b> </li>
-  <div id="bib6" style="display:none">
-  <blockquote style="font-size:9pt">
-  <pre>
-@article{zhang2019few,
+}</pre></div>
+          </div>
+        </li>
+
+        <li class="pub">
+          <a href="images/salnet.png" target="_blank" rel="noopener"><img class="thumb" src="images/salnet.png" alt="SalNet"></a>
+          <div>
+            <div class="pub-title"><a href="https://arxiv.org/pdf/1904.03472.pdf" target="_blank" rel="noopener">Few-shot Learning via Saliency-guided Hallucination of Samples</a></div>
+            <div class="pub-authors"><span class="me">Hongguang Zhang</span>, Jing Zhang, Piotr Koniusz</div>
+            <div class="pub-meta">
+              <span class="venue">CVPR 2019</span>
+              <span class="links">
+                <button type="button" data-bib>bib</button>
+                <a href="https://arxiv.org/pdf/1904.03472.pdf" target="_blank" rel="noopener">paper</a>
+                <a href="https://github.com/HongguangZhang/SalNet-cvpr19-master" target="_blank" rel="noopener">code</a>
+              </span>
+            </div>
+            <div class="bib" hidden><button class="btn copy" type="button">copy</button><pre>@article{zhang2019few,
   title={Few-shot Learning via Saliency-guided Hallucination of Samples},
   author={Zhang, Hongguang and Zhang, Jing and Koniusz, Piotr},
   journal={arXiv preprint arXiv:1904.03472},
   year={2019}
-}
-  </pre>
-  </blockquote>
-  </div>
-  <font size="-1">[<a href="javascript:copy(div6, bib6)">bib</a>][<a href="https://arxiv.org/pdf/1904.03472.pdf">paper</a>][<a href="https://github.com/HongguangZhang/SalNet-cvpr19-master">code</a>]</font><br>
-  <!--<td><a href="images/salnet.png"><img src='images/salnet.png' alt="salnet"/, height = 100></a></td>-->
-  <div id="div6"></div> <br>
-  
-  <li> <a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=8658920"><b>Power Normalizing Second-order Similarity Network for Few-shot Learning</b></a><br><b>Hongguang Zhang</b>, Piotr Koniusz. <br> <b>WACV 2019</b> <b style="color:Red;"> (Oral)</b>  </li>
-  <div id="bib5" style="display:none">
-  <blockquote style="font-size:9pt">
-  <pre>
-@inproceedings{zhang2019power,
+}</pre></div>
+          </div>
+        </li>
+
+        <li class="pub">
+          <a href="images/sosn.png" target="_blank" rel="noopener"><img class="thumb" src="images/sosn.png" alt="SoSN"></a>
+          <div>
+            <div class="pub-title"><a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=8658920" target="_blank" rel="noopener">Power Normalizing Second-order Similarity Network for Few-shot Learning</a></div>
+            <div class="pub-authors"><span class="me">Hongguang Zhang</span>, Piotr Koniusz</div>
+            <div class="pub-meta">
+              <span class="venue">WACV 2019</span>
+              <span class="badge">Oral</span>
+              <span class="links">
+                <button type="button" data-bib>bib</button>
+                <a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=8658920" target="_blank" rel="noopener">paper</a>
+                <a href="https://github.com/HongguangZhang/SoSN-wacv19-master" target="_blank" rel="noopener">code</a>
+              </span>
+            </div>
+            <div class="bib" hidden><button class="btn copy" type="button">copy</button><pre>@inproceedings{zhang2019power,
   title={Power normalizing second-order similarity network for few-shot learning},
   author={Zhang, Hongguang and Koniusz, Piotr},
   booktitle={2019 IEEE Winter Conference on Applications of Computer Vision (WACV)},
   pages={1185--1193},
   year={2019},
   organization={IEEE}
-}
-  </pre>
-  </blockquote>
-  </div>
-  <font size="-1">[<a href="javascript:copy(div5, bib5)">bib</a>][<a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=8658920">paper</a>] [<a href="https://github.com/HongguangZhang/SoSN-wacv19-master">code</a>] </font><br>
-  <!--<td><a href="images/sosn.png"><img src='images/sosn.png' alt="sosn"/, height = 100></a></td>-->
-  <div id="div5"></div> <br>
-  
-  <li> <a href="https://arxiv.org/pdf/1811.03252.pdf"><b>Model Selection for Generalized Zero-shot Learning</b></a><br><b>Hongguang Zhang</b>, Piotr Koniusz. <br> <b>ECCV 2018</b>  </li>
-  <div id="bib4" style="display:none">
-  <blockquote style="font-size:9pt">
-  <pre>
-@inproceedings{zhang2018model,
+}</pre></div>
+          </div>
+        </li>
+
+        <li class="pub">
+          <a href="images/2way-sa.png" target="_blank" rel="noopener"><img class="thumb" src="images/2way-sa.png" alt="Model selection for GZSL"></a>
+          <div>
+            <div class="pub-title"><a href="https://arxiv.org/pdf/1811.03252.pdf" target="_blank" rel="noopener">Model Selection for Generalized Zero-shot Learning</a></div>
+            <div class="pub-authors"><span class="me">Hongguang Zhang</span>, Piotr Koniusz</div>
+            <div class="pub-meta">
+              <span class="venue">ECCV 2018</span>
+              <span class="links">
+                <button type="button" data-bib>bib</button>
+                <a href="https://arxiv.org/pdf/1811.03252.pdf" target="_blank" rel="noopener">paper</a>
+              </span>
+            </div>
+            <div class="bib" hidden><button class="btn copy" type="button">copy</button><pre>@inproceedings{zhang2018model,
   title={Model selection for generalized zero-shot learning},
   author={Zhang, Hongguang and Koniusz, Piotr},
   booktitle={European Conference on Computer Vision},
   pages={198--204},
   year={2018},
   organization={Springer}
-}
-  </pre>
-  </blockquote>
-  </div>
-  <font size="-1">[<a href="javascript:copy(div4, bib4)">bib</a>] [<a href="https://arxiv.org/pdf/1811.03252.pdf">paper</a>]</font><br>
-  <!--<td><a href="images/2way-sa.png"><img src='images/2way-sa.png' alt="2way-sa"/, height = 125></a></td>-->
-  <div id="div4"></div> <br>
-  
-  <li> <a href="http://openaccess.thecvf.com/content_ECCV_2018/papers/Piotr_Koniusz_Museum_Exhibit_Identification_ECCV_2018_paper.pdf"><b>Museum Exhibit Identification Challenge for the Supervised Domain Adaptation and Beyond</b></a><br>Piotr Koniusz*, Yusuf Tas*, <b>Hongguang Zhang</b>, <i>et al</i>. <br> <b>ECCV 2018</b>  <b style="color:Red;"> (Oral)</b></li>
-  <div id="bib3" style="display:none">
-  <blockquote style="font-size:9pt">
-  <pre>
-@InProceedings{Koniusz_2018_ECCV,
+}</pre></div>
+          </div>
+        </li>
+
+        <li class="pub">
+          <a href="images/openmic.png" target="_blank" rel="noopener"><img class="thumb" src="images/openmic.png" alt="Open MIC"></a>
+          <div>
+            <div class="pub-title"><a href="http://openaccess.thecvf.com/content_ECCV_2018/papers/Piotr_Koniusz_Museum_Exhibit_Identification_ECCV_2018_paper.pdf" target="_blank" rel="noopener">Museum Exhibit Identification Challenge for the Supervised Domain Adaptation and Beyond</a></div>
+            <div class="pub-authors">Piotr Koniusz<sup>*</sup>, Yusuf Tas<sup>*</sup>, <span class="me">Hongguang Zhang</span>, <i>et al.</i></div>
+            <div class="pub-meta">
+              <span class="venue">ECCV 2018</span>
+              <span class="badge">Oral</span>
+              <span class="links">
+                <button type="button" data-bib>bib</button>
+                <a href="http://openaccess.thecvf.com/content_ECCV_2018/papers/Piotr_Koniusz_Museum_Exhibit_Identification_ECCV_2018_paper.pdf" target="_blank" rel="noopener">paper</a>
+                <a href="http://users.cecs.anu.edu.au/~koniusz/openmic-dataset/" target="_blank" rel="noopener">dataset</a>
+              </span>
+            </div>
+            <div class="bib" hidden><button class="btn copy" type="button">copy</button><pre>@InProceedings{Koniusz_2018_ECCV,
   author = {Koniusz, Piotr and Tas, Yusuf and Zhang, Hongguang and Harandi, Mehrtash and Porikli, Fatih and Zhang, Rui},
   title = {Museum Exhibit Identification Challenge for the Supervised Domain Adaptation and Beyond},
   booktitle = {The European Conference on Computer Vision (ECCV)},
   month = {September},
   year = {2018}
-}
-  </pre>
-  </blockquote>
-  </div>
-  <font size="-1">[<a href="javascript:copy(div3, bib3)">bib</a>] [<a href="http://openaccess.thecvf.com/content_ECCV_2018/papers/Piotr_Koniusz_Museum_Exhibit_Identification_ECCV_2018_paper.pdf">paper</a>][<a href="http://users.cecs.anu.edu.au/~koniusz/openmic-dataset/">download</a>] </font><br>
-  <!--<td><a href="images/openmic.png"><img src='images/openmic.png' alt="openmic"/, height = 100></a></td>-->
-  <div id="div3"></div> <br>
-  
-  <li> <a href="http://openaccess.thecvf.com/content_cvpr_2018/papers/Zhang_Zero-Shot_Kernel_Learning_CVPR_2018_paper.pdf"><b>Zero-shot Kernel Learning</b></a><br><b>Hongguang Zhang*</b>, Piotr Koniusz*. <br> <b>CVPR 2018</b> </li>
-  <div id="bib2" style="display:none">
-  <blockquote style="font-size:9pt">
-  <pre>
-@InProceedings{Zhang_2018_CVPR,
+}</pre></div>
+          </div>
+        </li>
+
+        <li class="pub">
+          <a href="images/zskl.png" target="_blank" rel="noopener"><img class="thumb" src="images/zskl.png" alt="ZSKL"></a>
+          <div>
+            <div class="pub-title"><a href="http://openaccess.thecvf.com/content_cvpr_2018/papers/Zhang_Zero-Shot_Kernel_Learning_CVPR_2018_paper.pdf" target="_blank" rel="noopener">Zero-shot Kernel Learning</a></div>
+            <div class="pub-authors"><span class="me">Hongguang Zhang</span><sup>*</sup>, Piotr Koniusz<sup>*</sup></div>
+            <div class="pub-meta">
+              <span class="venue">CVPR 2018</span>
+              <span class="links">
+                <button type="button" data-bib>bib</button>
+                <a href="http://openaccess.thecvf.com/content_cvpr_2018/papers/Zhang_Zero-Shot_Kernel_Learning_CVPR_2018_paper.pdf" target="_blank" rel="noopener">paper</a>
+                <a href="https://github.com/HongguangZhang/zskl-cvpr18-master" target="_blank" rel="noopener">code</a>
+              </span>
+            </div>
+            <div class="bib" hidden><button class="btn copy" type="button">copy</button><pre>@InProceedings{Zhang_2018_CVPR,
   author = {Zhang, Hongguang and Koniusz, Piotr},
   title = {Zero-Shot Kernel Learning},
   booktitle = {The IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
   month = {June},
   year = {2018}
-}
-  </pre>
-  </blockquote>
-  </div>
-  <font size="-1">[<a href="javascript:copy(div2, bib2)">bib</a>] [<a href="http://openaccess.thecvf.com/content_cvpr_2018/papers/Zhang_Zero-Shot_Kernel_Learning_CVPR_2018_paper.pdf">paper</a>] [<a href="https://github.com/HongguangZhang/zskl-cvpr18-master">code</a>] </font><br>
-  <!--<td><a href="images/zskl.png"><img src='images/zskl.png' alt="zskl"/, height = 90></a></td>-->
-  <div id="div2"></div> <br>
-  
-  <li> <a href="http://openaccess.thecvf.com/content_cvpr_2018/papers/Koniusz_A_Deeper_Look_CVPR_2018_paper.pdf"><b>A Deeper Look at Power Normalizations</b></a><br>Piotr Koniusz*, <b>Hongguang Zhang*</b>. <br> <b>CVPR 2018</b> </li>
-  <div id="bib1" style="display:none">
-  <blockquote style="font-size:9pt">
-  <pre>
-@InProceedings{Koniusz_2018_CVPR,
+}</pre></div>
+          </div>
+        </li>
+
+        <li class="pub">
+          <a href="images/sop.png" target="_blank" rel="noopener"><img class="thumb" src="images/sop.png" alt="Power normalizations"></a>
+          <div>
+            <div class="pub-title"><a href="http://openaccess.thecvf.com/content_cvpr_2018/papers/Koniusz_A_Deeper_Look_CVPR_2018_paper.pdf" target="_blank" rel="noopener">A Deeper Look at Power Normalizations</a></div>
+            <div class="pub-authors">Piotr Koniusz<sup>*</sup>, <span class="me">Hongguang Zhang</span><sup>*</sup></div>
+            <div class="pub-meta">
+              <span class="venue">CVPR 2018</span>
+              <span class="links">
+                <button type="button" data-bib>bib</button>
+                <a href="http://openaccess.thecvf.com/content_cvpr_2018/papers/Koniusz_A_Deeper_Look_CVPR_2018_paper.pdf" target="_blank" rel="noopener">paper</a>
+              </span>
+            </div>
+            <div class="bib" hidden><button class="btn copy" type="button">copy</button><pre>@InProceedings{Koniusz_2018_CVPR,
   author = {Koniusz, Piotr and Zhang, Hongguang and Porikli, Fatih},
   title = {A Deeper Look at Power Normalizations},
   booktitle = {The IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
   month = {June},
   year = {2018}
-}
-  </pre>
-  </blockquote>
+}</pre></div>
+          </div>
+        </li>
+
+      </ul>
+    </section>
+
+    <section id="education">
+      <h2><span class="en">Education &amp; Experience</span><span class="zh">教育与工作经历</span></h2>
+      <ul class="clean">
+        <li>
+          <span class="when">2016.10 – 2020.05</span>
+          <span class="en">&nbsp;Ph.D., <b>Australian National University</b>. Supervisors: <a href="http://users.cecs.anu.edu.au/~koniusz/" target="_blank" rel="noopener">Dr. Piotr Koniusz</a>, <a href="http://users.cecs.anu.edu.au/~hongdong/" target="_blank" rel="noopener">Prof. Hongdong Li</a></span>
+          <span class="zh">&nbsp;博士，<b>澳大利亚国立大学</b>。导师：<a href="http://users.cecs.anu.edu.au/~koniusz/" target="_blank" rel="noopener">Piotr Koniusz 博士</a>、<a href="http://users.cecs.anu.edu.au/~hongdong/" target="_blank" rel="noopener">李宏东 教授</a></span>
+        </li>
+        <li>
+          <span class="when">2019.08 – 2019.12</span>
+          <span class="en">&nbsp;Academic Visitor, <b>University of Oxford</b>, Torr Vision Group. Supervisor: <a href="http://www.robots.ox.ac.uk/~phst/" target="_blank" rel="noopener">Prof. Philip H. S. Torr</a></span>
+          <span class="zh">&nbsp;访问学者，<b>牛津大学</b> Torr Vision Group。导师：<a href="http://www.robots.ox.ac.uk/~phst/" target="_blank" rel="noopener">Philip H. S. Torr 教授</a></span>
+        </li>
+        <li>
+          <span class="when">2014.09 – 2016.06</span>
+          <span class="en">&nbsp;M.Eng., <b>National University of Defense Technology</b></span>
+          <span class="zh">&nbsp;硕士，<b>国防科技大学</b></span>
+        </li>
+        <li>
+          <span class="when">2010.09 – 2014.06</span>
+          <span class="en">&nbsp;B.Eng., <b>Shanghai Jiao Tong University</b></span>
+          <span class="zh">&nbsp;学士，<b>上海交通大学</b></span>
+        </li>
+      </ul>
+    </section>
+
+    <section id="projects">
+      <h2><span class="en">Projects</span><span class="zh">科研项目</span></h2>
+      <ul class="clean">
+        <li>
+          <span class="en">Beijing Nova Program, Beijing Municipal Science &amp; Technology Commission, 2022–2025</span>
+          <span class="zh">北京市科技新星计划，北京市科学技术委员会，2022–2025</span>
+        </li>
+        <li>
+          <span class="en">Youth Science Fund Project, NSFC, 2022–2024</span>
+          <span class="zh">国家自然科学基金青年科学基金项目，2022–2024</span>
+        </li>
+      </ul>
+    </section>
+
+    <section id="honors">
+      <h2><span class="en">Academic Honors and Awards</span><span class="zh">荣誉与奖励</span></h2>
+      <ul class="clean">
+        <li><span class="when">2022</span><span class="en">&nbsp;Fellow of Beijing Nova Program</span><span class="zh">&nbsp;北京市科技新星</span></li>
+        <li><span class="when">2022</span><span class="en">&nbsp;ECCV Outstanding Reviewer</span><span class="zh">&nbsp;ECCV 杰出审稿人</span></li>
+        <li><span class="when">2020</span><span class="en">&nbsp;Peng Cheng Laboratory (PCL) Overseas Youth Talents Forum</span><span class="zh">&nbsp;鹏城实验室海外青年学者论坛</span></li>
+        <li><span class="when">2019</span><span class="en">&nbsp;ANU CECS Dean's Travel Award</span><span class="zh">&nbsp;澳大利亚国立大学 CECS 院长旅行奖</span></li>
+        <li><span class="when">2019</span><span class="en">&nbsp;ANU Vice-Chancellor's Travel Grant</span><span class="zh">&nbsp;澳大利亚国立大学校长旅行基金</span></li>
+        <li><span class="when">2018</span><span class="en">&nbsp;Data61/CSIRO Scholarship</span><span class="zh">&nbsp;Data61/CSIRO 奖学金</span></li>
+        <li><span class="when">2017</span><span class="en">&nbsp;ICML Travel Grant</span><span class="zh">&nbsp;ICML 旅行资助</span></li>
+        <li><span class="when">2016</span><span class="en">&nbsp;China Scholarship Council Ph.D. Scholarship</span><span class="zh">&nbsp;国家留学基金委（CSC）博士研究生奖学金</span></li>
+        <li><span class="when">2016</span><span class="en">&nbsp;Merit Postgraduate Student Innovation Fellowship, NUDT</span><span class="zh">&nbsp;国防科技大学优秀研究生创新奖学金</span></li>
+        <li><span class="when">2015</span><span class="en">&nbsp;Kuang-hua Fellowship, NUDT</span><span class="zh">&nbsp;国防科技大学光华奖学金</span></li>
+        <li><span class="when">2014</span><span class="en">&nbsp;Outstanding Graduate Award, SJTU</span><span class="zh">&nbsp;上海交通大学优秀毕业生</span></li>
+        <li><span class="when">2013</span><span class="en">&nbsp;Shanghai Government Scholarship, SJTU</span><span class="zh">&nbsp;上海市政府奖学金</span></li>
+        <li><span class="when">2013</span><span class="en">&nbsp;Shanghai Second-class Award, National Undergraduate Electronic Design Contest</span><span class="zh">&nbsp;全国大学生电子设计竞赛上海赛区二等奖</span></li>
+        <li><span class="when">2013</span><span class="en">&nbsp;Academic Excellence Fellowship, SJTU</span><span class="zh">&nbsp;上海交通大学学业优秀奖学金</span></li>
+        <li><span class="when">2013</span><span class="en">&nbsp;National Endeavor Fellowship, SJTU</span><span class="zh">&nbsp;国家励志奖学金</span></li>
+        <li><span class="when">2012–2013</span><span class="en">&nbsp;Merit Student, SJTU</span><span class="zh">&nbsp;上海交通大学三好学生</span></li>
+      </ul>
+    </section>
+
+    <section id="activities">
+      <h2><span class="en">Professional Activities</span><span class="zh">学术服务</span></h2>
+      <ul class="clean">
+        <li>
+          <span class="en">Co-organizer, ACCV 2018 Workshop: <b>Museum Exhibit Identification Challenge (Open MIC) for Domain Adaptation and Few-Shot Learning</b></span>
+          <span class="zh">ACCV 2018 研讨会共同组织者：<b>Museum Exhibit Identification Challenge (Open MIC) for Domain Adaptation and Few-Shot Learning</b></span>
+        </li>
+        <li>
+          <span class="en"><b>Conference reviewer</b>: CVPR'20-21, NeurIPS'20, ICML'20-21, ICLR'20-21, ECCV'20, ICCV'19-21, AAAI'20, ACCV'20, BMVC'19-20, WACV'19-20</span>
+          <span class="zh"><b>会议审稿</b>：CVPR'20-21、NeurIPS'20、ICML'20-21、ICLR'20-21、ECCV'20、ICCV'19-21、AAAI'20、ACCV'20、BMVC'19-20、WACV'19-20</span>
+        </li>
+        <li>
+          <span class="en"><b>Journal reviewer</b>: TPAMI, IJCV, TIP, TMM, TCSVT, IMAVIS, KNOSYS</span>
+          <span class="zh"><b>期刊审稿</b>：TPAMI、IJCV、TIP、TMM、TCSVT、IMAVIS、KNOSYS</span>
+        </li>
+        <li>
+          <span class="en">Tutor for <b>ENG4528 Computer Vision</b>, Semester 1, 2019</span>
+          <span class="zh">助教：<b>ENG4528 计算机视觉</b>，2019 年第一学期</span>
+        </li>
+      </ul>
+    </section>
+
+    <section id="social-activities">
+      <h2><span class="en">Other Activities and Awards</span><span class="zh">其他经历与奖励</span></h2>
+      <ul class="clean">
+        <li><span class="when">2014</span><span class="en">&nbsp;Leader of the Graduation Oath, SJTU Graduation Ceremony</span><span class="zh">&nbsp;上海交通大学毕业典礼毕业誓词领誓人</span></li>
+        <li><span class="when">2014</span><span class="en">&nbsp;First-class Award, 1st "In the Name of Youth" Graduation Speech Contest, SJTU</span><span class="zh">&nbsp;上海交通大学首届"以青春的名义"毕业演讲比赛一等奖</span></li>
+        <li><span class="when">2014–2016</span><span class="en">&nbsp;Anchor of NUDT News, NUDT</span><span class="zh">&nbsp;国防科技大学新闻节目主播</span></li>
+        <li><span class="when">2014</span><span class="en">&nbsp;First-class Award, NUDT Speech Contest</span><span class="zh">&nbsp;国防科技大学演讲比赛一等奖</span></li>
+        <li><span class="en">Top 20 billiards players of SJTU</span><span class="zh">上海交通大学台球比赛前 20 名</span></li>
+      </ul>
+    </section>
+
+    <footer>
+      <span class="en">© <span id="year"></span> Hongguang Zhang · Last updated <span class="updated"></span></span>
+      <span class="zh">© <span class="year-zh"></span> 张洪广 · 最近更新：<span class="updated"></span></span>
+      <a id="totop" href="#"><span class="en">Back to top ↑</span><span class="zh">回到顶部 ↑</span></a>
+    </footer>
+
   </div>
-  <font size="-1">[<a href="javascript:copy(div1, bib1)">bib</a>] [<a href="http://openaccess.thecvf.com/content_cvpr_2018/papers/Koniusz_A_Deeper_Look_CVPR_2018_paper.pdf">paper</a>] </font><br>
-  <!--<td><a href="images/sop.png"><img src='images/sop.png' alt="sop"/, width = 300></a></td>-->
-  <div id="div1"></div> <br>
-</ul>
-<br>
 
-<a name = "education" class="disabled"><h2> Education </h2></a>
-<ul style="width: 1000px;">
-<li> 2016.10 - 2020.05: Ph.D., <b>Australian National University</b>, Supervisor: <b><a href="http://users.cecs.anu.edu.au/~koniusz/">Dr. Piotr Koniusz</a>, <a href="http://users.cecs.anu.edu.au/~hongdong/">Prof. Hongdong Li</a></b> </li>
-<li> 2019.08 - 2019.12: Academic Visitor, <b>University of Oxford</b>, Torr Vision Group, Supervisor: <b><a href="http://www.robots.ox.ac.uk/~phst/">Prof. Philip H. S. Torr</a></b> </li>
-<li> 2014.09 - 2016.06: M.Eng, <b>National University of Defense Technology</b> </li>
-<li> 2010.09 - 2014.06: B.Eng, <b>Shanghai Jiao Tong University</b> </li>
-</ul>
-<br>
+  <script>
+    (function () {
+      var root = document.documentElement;
 
-<a name = "projects" class="disabled"><h2> Projects</h2></a>
-<ul style="width: 1000px;">
-  <li> Beijing Nova Program, Beijing Municipal Science and Technology Commission, 2022-2025</li>
-  <li> Youth Science Fund Project, NSFC, 2022-2024</li>
-</ul>
-<br>
+      /* ---------- language ---------- */
+      var savedLang = localStorage.getItem('lang');
+      var lang = savedLang || ((navigator.language || 'en').toLowerCase().indexOf('zh') === 0 ? 'zh' : 'en');
 
-<a name = "honors" class="disabled"><h2> Academic Honors and Awards</h2></a>
-<ul style="width: 1000px;">
-  <li> Fellow of Beijing Nova Program, 2022 </li>
-  <li> ECCV Outstanding Reviewer, 2022 </li>
-  <li> Peng Cheng Laboratory (PCL) Overseas Youth Talents Forum, 2020 </li>
-  <li> ANU CECS Dean's Travel Award, 2019 </li>
-  <li> ANU Vice-Chancellor's Travel Grant, 2019 </li>
-  <li> Data61/CSIRO Scholarship, 2018 </li>
-  <li> ICML Travel Grant, 2017 </li>
-  <li> China Scholarship Council PhD Scholarship, 2016 </li>
-  <li> Merit Postgraduate Student Innovation Fellowship, NUDT, 2016 </li>
-  <li> Kuang-hua Fellowship, NUDT, 2015</li>
-  <li> Outstanding Graduate Award, SJTU, 2014</li>
-  <li> Shanghai Government Scholarship, SJTU, 2013</li>
-  <li> Shanghai Second-class Award of National Undergraduate Electronic Design Contest, SJTU, 2013 </li>
-  <li> Academic Excellence Fellowship, SJTU, 2013 </li>
-  <li> National Endeavor Fellowship, SJTU, 2013 </li>
-  <li> Merit Student, SJTU, 2012-2013 </li>
-</ul>
-<br>
+      var titles = { en: "Hongguang Zhang | Homepage", zh: "张洪广 | 个人主页" };
 
-<a name = "activities" class="disabled"><h2> Professional Activities </h2></a>
-<ul style="width: 1000px;">
-<li> Co-organized ACCV 2018 Workshop: <b> Museum Exhibit Identification Challenge (Open MIC) for Domain Adaptation and Few-Shot Learning. </b> </li>
-<li> Conference Review: CVPR'20-21, NeruIPS'20, ICML'20-21, ICLR'20-21, ECCV'20, ICCV'19-21, AAAI'20, ACCV'20, BMVC'19-20, WACV'19-20</li>
-<li> Journal Review: TPAMI, IJCV, TIP, TMM, TCSVT, IMAVIS, KNOSYS</li>
-<li> Tutor for <b>ENG4528 Computer Vision Semester 1 2019</b>.
-</ul>
-<br>
+      function applyLang(l) {
+        lang = l;
+        root.setAttribute('data-lang', l);
+        root.setAttribute('lang', l === 'zh' ? 'zh-CN' : 'en');
+        document.title = titles[l];
+        localStorage.setItem('lang', l);
+      }
 
-<a name = "social-activities" class="disabled"><h2> Other Activities and Awards </h2></a>
-<ul style="width: 1000px;">
-<li> The Leader of Graduation Oath, SJTU Graduation Ceremony, 2014</li>
-<li> First-class Award of 1st "In the Name of Youth" Graduation Speech Contest, SJTU, 2014 </li>
-<li> The Anchor of NUDT News, NUDT, 2014-2016 </li>
-<li> First-class Award of NUDT Speech Contest, NUDT, 2014</li>
-<li> Top 20 Billiards Players of SJTU</b>.
-</ul>
-<br>
+      applyLang(lang);
+      document.getElementById('lang-toggle').addEventListener('click', function () {
+        applyLang(lang === 'en' ? 'zh' : 'en');
+      });
 
-<script type="text/javascript" src="//rf.revolvermaps.com/0/0/2.js?i=5259p4y2ksc&amp;m=0&amp;s=160&amp;c=ff0000&amp;t=1" async="async"></script>
+      /* ---------- theme ---------- */
+      var savedTheme = localStorage.getItem('theme');
+      var theme = savedTheme ||
+        (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+
+      function applyTheme(t) {
+        theme = t;
+        root.setAttribute('data-theme', t);
+        document.getElementById('theme-icon').textContent = (t === 'dark' ? '☀️' : '🌙');
+        localStorage.setItem('theme', t);
+      }
+
+      applyTheme(theme);
+      document.getElementById('theme-toggle').addEventListener('click', function () {
+        applyTheme(theme === 'dark' ? 'light' : 'dark');
+      });
+
+      /* ---------- bibtex toggle + copy ---------- */
+      document.addEventListener('click', function (e) {
+        var trigger = e.target.closest('[data-bib]');
+        if (trigger) {
+          var box = trigger.closest('.pub').querySelector('.bib');
+          if (box) box.hidden = !box.hidden;
+          return;
+        }
+        var copyBtn = e.target.closest('.bib .copy');
+        if (copyBtn) {
+          var text = copyBtn.parentNode.querySelector('pre').textContent;
+          navigator.clipboard.writeText(text).then(function () {
+            copyBtn.textContent = lang === 'zh' ? '已复制' : 'copied';
+            setTimeout(function () { copyBtn.textContent = 'copy'; }, 1500);
+          });
+        }
+      });
+
+      /* ---------- footer ---------- */
+      var y = new Date().getFullYear();
+      document.getElementById('year').textContent = y;
+      document.querySelector('.year-zh').textContent = y;
+      var updated = document.lastModified ? document.lastModified.split(' ')[0] : '';
+      Array.prototype.forEach.call(document.querySelectorAll('.updated'), function (el) {
+        el.textContent = updated;
+      });
+    })();
+  </script>
+
+  <script type="text/javascript" src="//rf.revolvermaps.com/0/0/2.js?i=5259p4y2ksc&amp;m=0&amp;s=160&amp;c=ff0000&amp;t=1" async="async"></script>
+
+</body>
 
 </html>
